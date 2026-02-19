@@ -6,149 +6,170 @@
 <title>Lịch Sử Việt Nam</title>
 
 <style>
-html {
-    scroll-behavior: smooth;
+html{
+  scroll-behavior:smooth;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: white;
-    overflow-x: hidden;
-    background: black;
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  color:white;
+  background:black;
+  overflow-x:hidden;
 }
 
-/* ===== video nền ===== */
-#bgVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -2;
-    object-fit: cover;
-    filter: brightness(0.35);
+/* ===== NAVBAR ===== */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  padding:12px;
+  text-align:center;
+  z-index:999;
 }
 
-/* lớp phủ tối */
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle, transparent, black);
-    z-index: -1;
+nav a{
+  color:#FFD700;
+  text-decoration:none;
+  margin:0 15px;
+  font-weight:bold;
 }
 
-/* chữ chạy */
-.marquee {
-    background: #FFD700;
-    color: black;
-    padding: 10px;
-    font-weight: bold;
+/* ===== NỀN CỜ BAY ===== */
+.flag-bg{
+  position:fixed;
+  inset:0;
+  background:#d80000;
+  z-index:-2;
+  overflow:hidden;
 }
 
-/* header */
-header {
-    text-align: center;
-    padding: 80px 20px;
+/* hiệu ứng sóng cờ */
+.flag-bg::before{
+  content:"";
+  position:absolute;
+  inset:-50%;
+  background:
+    repeating-linear-gradient(
+      120deg,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 20px,
+      transparent 20px,
+      transparent 40px
+    );
+  animation:wave 8s linear infinite;
 }
 
-h1 {
-    font-size: 52px;
-    color: #FFD700;
-    animation: glow 2s infinite alternate;
+@keyframes wave{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(200px); }
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px #FFD700; }
-    to { text-shadow: 0 0 40px #FFD700; }
+/* ===== SAO VÀNG ===== */
+.star{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:140px;
+  color:#FFD700;
+  text-shadow:
+    0 0 20px #FFD700,
+    0 0 40px #FFD700,
+    0 0 80px #FFD700;
+  animation:pulse 2s infinite;
+  z-index:-1;
+  pointer-events:none;
 }
 
-/* timeline */
-.timeline {
-    margin: 60px;
-    padding-left: 30px;
-    border-left: 3px solid #FFD700;
+@keyframes pulse{
+  0%,100%{ transform:translate(-50%,-50%) scale(1); }
+  50%{ transform:translate(-50%,-50%) scale(1.15); }
 }
 
-.timeline-item {
-    margin: 40px 0;
-    opacity: 0;
-    transform: translateY(80px);
-    transition: all 1s ease;
-    background: rgba(0,0,0,0.5);
-    padding: 20px;
-    border-radius: 12px;
+/* ===== HEADER ===== */
+header{
+  padding-top:100px;
+  text-align:center;
 }
 
-.timeline-item.show {
-    opacity: 1;
-    transform: translateY(0);
+h1{
+  font-size:42px;
+  color:#FFD700;
 }
 
-/* nút nhạc */
-.music-btn {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    background: #FFD700;
-    color: black;
-    border: none;
-    padding: 16px 20px;
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 999;
+/* ===== TIMELINE ===== */
+.timeline{
+  margin:40px;
+  padding-left:20px;
+  border-left:3px solid #FFD700;
 }
 
-/* canvas pháo hoa */
-#fireworks {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
+.timeline-item{
+  margin:30px 0;
+  background:rgba(0,0,0,0.55);
+  padding:20px;
+  border-radius:12px;
+  opacity:0;
+  transform:translateY(60px);
+  transition:all .8s ease;
 }
 
-footer {
-    text-align: center;
-    padding: 30px;
-    background: rgba(0,0,0,0.7);
+.timeline-item.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ===== NÚT NHẠC ===== */
+.music-btn{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#FFD700;
+  color:black;
+  border:none;
+  padding:16px;
+  border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(0,0,0,0.4);
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎬 VIDEO NỀN -->
-<video autoplay muted loop id="bgVideo">
-<source src="https://cdn.coverr.co/videos/coverr-soldiers-in-war-5174/1080p.mp4" type="video/mp4">
-</video>
-<div class="overlay"></div>
+<!-- nền cờ -->
+<div class="flag-bg"></div>
 
-<!-- 🎆 pháo hoa -->
-<canvas id="fireworks"></canvas>
+<!-- sao vàng -->
+<div class="star">★</div>
 
-<!-- 🎵 nhạc -->
-<audio id="bgMusic" autoplay loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+<!-- menu -->
+<nav>
+  <a href="#">Trang chủ</a>
+  <a href="#timeline">Dòng thời gian</a>
+</nav>
+
+<!-- nhạc -->
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
 <button class="music-btn" onclick="toggleMusic()">🔊</button>
 
-<!-- chữ chạy -->
-<div class="marquee">
-<marquee>🇻🇳 Tự hào dân tộc Việt Nam – Bất khuất – Kiên cường – Anh hùng 🇻🇳</marquee>
-</div>
-
 <header>
-<h1>🇻🇳 LỊCH SỬ VIỆT NAM</h1>
-<p>Hành trình đấu tranh giành độc lập của dân tộc</p>
+  <h1>🇻🇳 LỊCH SỬ VIỆT NAM</h1>
+  <p>Hành trình đấu tranh giành độc lập của dân tộc</p>
 </header>
 
-<section class="timeline">
+<section id="timeline" class="timeline">
 
 <div class="timeline-item">
-<h3>1858 – Pháp xâm lược</h3>
-<p>Liên quân Pháp – Tây Ban Nha nổ súng tại Đà Nẵng, mở đầu thời kỳ đô hộ.</p>
+<h3>1858 – Pháp nổ súng xâm lược</h3>
+<p>Liên quân Pháp – Tây Ban Nha tấn công Đà Nẵng, mở đầu thời kỳ xâm lược.</p>
 </div>
 
 <div class="timeline-item">
@@ -168,82 +189,36 @@ footer {
 
 </section>
 
-<footer>
-<p>🇻🇳 Website Lịch Sử Việt Nam</p>
-</footer>
-
 <script>
-/* ===== nút nhạc ===== */
-let music = document.getElementById("bgMusic");
-let playing = true;
+/* bật tắt nhạc */
+let music=document.getElementById("bgMusic");
+let playing=false;
 
-function toggleMusic() {
-    if (playing) {
-        music.pause();
-        playing = false;
-    } else {
-        music.play();
-        playing = true;
+function toggleMusic(){
+  if(playing){
+    music.pause();
+    playing=false;
+  }else{
+    music.play();
+    playing=true;
+  }
+}
+
+/* animation timeline */
+let items=document.querySelectorAll(".timeline-item");
+
+function showItems(){
+  let trigger=window.innerHeight*0.9;
+  items.forEach(item=>{
+    let top=item.getBoundingClientRect().top;
+    if(top<trigger){
+      item.classList.add("show");
     }
+  });
 }
 
-/* ===== timeline mượt ===== */
-let items = document.querySelectorAll(".timeline-item");
-
-function showTimeline() {
-    let trigger = window.innerHeight * 0.85;
-    items.forEach(item => {
-        let top = item.getBoundingClientRect().top;
-        if (top < trigger) item.classList.add("show");
-    });
-}
-window.addEventListener("scroll", showTimeline);
-showTimeline();
-
-/* ===== pháo hoa liên tục ===== */
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-
-function spawnFirework(x, y) {
-    for (let i = 0; i < 40; i++) {
-        particles.push({
-            x: x,
-            y: y,
-            dx: (Math.random() - 0.5) * 6,
-            dy: (Math.random() - 0.5) * 6,
-            life: 80
-        });
-    }
-}
-
-setInterval(() => {
-    spawnFirework(
-        Math.random() * canvas.width,
-        Math.random() * canvas.height * 0.6
-    );
-}, 800);
-
-function animate() {
-    ctx.fillStyle = "rgba(0,0,0,0.2)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    particles.forEach(p => {
-        p.x += p.dx;
-        p.y += p.dy;
-        p.life--;
-
-        ctx.fillStyle = "#FFD700";
-        ctx.fillRect(p.x, p.y, 3, 3);
-    });
-
-    particles = particles.filter(p => p.life > 0);
-    requestAnimationFrame(animate);
-}
-animate();
+window.addEventListener("scroll",showItems);
+showItems();
 </script>
 
 </body>
