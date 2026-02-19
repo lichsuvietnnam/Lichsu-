@@ -1,265 +1,273 @@
-<!DOCTYPE html>
-<html lang="vi">
+<!DOCTYPE html><html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lịch Sử Việt Nam</title>
-
-<style>
-/* ===== RESET ===== */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lịch Sử Việt Nam - Điện Ảnh</title><!-- ===== Google Font ===== --><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;500;700;900&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box}
 body{
-  font-family:Arial, sans-serif;
-  color:white;
+  font-family:'Be Vietnam Pro',sans-serif;
+  color:#fff;
   overflow-x:hidden;
-  background:linear-gradient(#4facfe,#00f2fe);
+  scroll-behavior:smooth;
+  background:#000;
 }
 
-/* ===== CLOUDS ===== */
-.cloud{
+/* ===== Background sky ===== */
+.sky{
   position:fixed;
-  top:0;
-  width:200px;
-  opacity:.8;
-  animation:cloudMove linear infinite;
-  pointer-events:none;
+  inset:0;
+  background:linear-gradient(#3da0ff,#a7d8ff 60%,#ffffff);
+  z-index:-3;
+}
+
+.clouds{
+  position:fixed;
+  inset:0;
+  background:url('https://i.imgur.com/9QZ7Q9K.png');
+  background-size:cover;
+  opacity:.35;
+  animation:cloudMove 120s linear infinite;
+  z-index:-2;
 }
 
 @keyframes cloudMove{
-  from{ transform:translateX(-250px); }
-  to{ transform:translateX(120vw); }
+  from{background-position:0 0}
+  to{background-position:2000px 0}
 }
 
-/* ===== MENU ===== */
-.nav{
+/* ===== Cinematic overlay ===== */
+.overlay{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at center,transparent 55%,rgba(0,0,0,.55)),
+    linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.35));
+  z-index:-1;
+}
+
+/* ===== NAVBAR ===== */
+nav{
   position:fixed;
   top:0;
+  left:0;
   width:100%;
-  padding:15px 30px;
-  background:rgba(0,0,0,.4);
+  padding:14px 30px;
   backdrop-filter:blur(10px);
+  background:rgba(0,0,0,.35);
   display:flex;
   justify-content:space-between;
   align-items:center;
   z-index:999;
 }
 
-.nav a{
-  color:white;
-  text-decoration:none;
-  margin:0 10px;
-  font-weight:bold;
+.logo{
+  font-weight:900;
+  font-size:22px;
+  letter-spacing:1px;
 }
 
-/* ===== FLAG ===== */
-.flag-wrap{
-  margin-top:90px;
+.menu{
   display:flex;
-  justify-content:center;
+  gap:24px;
 }
 
-.flag{
-  width:260px;
-  height:170px;
-  background:#da251d;
+.menu a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
   position:relative;
-  animation:flagWave 3s infinite ease-in-out;
-  box-shadow:0 0 25px rgba(0,0,0,.4);
 }
 
-@keyframes flagWave{
-  0%,100%{ transform:skewY(0deg); }
-  50%{ transform:skewY(4deg); }
-}
-
-/* ===== STAR CENTER ===== */
-.star-center{
+.menu a::after{
+  content:"";
   position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-size:90px;
-  color:gold;
-  text-shadow:0 0 25px gold,0 0 60px gold;
-  animation:starGlow 2s infinite alternate;
-  pointer-events:none;
+  left:0;bottom:-4px;
+  width:0;height:2px;
+  background:#ffd700;
+  transition:.3s;
 }
 
-@keyframes starGlow{
-  from{ opacity:.7; transform:translate(-50%,-50%) scale(1); }
-  to{ opacity:1; transform:translate(-50%,-50%) scale(1.15); }
-}
-
-/* ===== SECTION ===== */
-.section{
-  padding:80px 20px;
-  max-width:900px;
-  margin:auto;
-}
-
-.section h2{
-  text-align:center;
-  margin-bottom:20px;
-}
-
-/* ===== TIMELINE ===== */
-.timeline-item{
-  opacity:0;
-  transform:translateY(40px);
-  transition:all .8s ease;
-  margin-bottom:25px;
-  background:rgba(0,0,0,.35);
-  padding:20px;
-  border-radius:12px;
-}
-
-.timeline-item.show{
-  opacity:1;
-  transform:translateY(0);
-}
+.menu a:hover::after{width:100%}
 
 /* ===== MUSIC BUTTON ===== */
 .music-btn{
   position:fixed;
-  bottom:20px;
   right:20px;
-  padding:14px 18px;
+  bottom:20px;
+  background:linear-gradient(45deg,#ff0000,#ffcc00);
   border:none;
-  border-radius:50px;
-  background:#ffcc00;
-  font-weight:bold;
+  color:#fff;
+  padding:14px 18px;
+  border-radius:999px;
+  font-weight:700;
   cursor:pointer;
+  box-shadow:0 0 20px rgba(255,0,0,.6);
   z-index:999;
+}
+
+/* ===== STAR ===== */
+.star{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:90px;
+  color:#ffd700;
+  text-shadow:
+    0 0 20px #ffd700,
+    0 0 40px #ffd700,
+    0 0 80px #ffea00;
+  animation:starPulse 2s ease-in-out infinite;
+  pointer-events:none;
+}
+
+@keyframes starPulse{
+  0%,100%{transform:translate(-50%,-50%) scale(1)}
+  50%{transform:translate(-50%,-50%) scale(1.25)}
+}
+
+/* ===== TIMELINE ===== */
+.section{
+  padding:120px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.title{
+  text-align:center;
+  font-size:42px;
+  font-weight:900;
+  margin-bottom:60px;
+  text-shadow:0 0 20px rgba(0,0,0,.6);
+}
+
+.timeline-item{
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(8px);
+  padding:28px;
+  border-radius:18px;
+  margin-bottom:40px;
+  transform:translateY(80px);
+  opacity:0;
+  transition:.9s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 20px 40px rgba(0,0,0,.45);
+}
+
+.timeline-item.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+.timeline-item h3{
+  color:#ffd700;
+  margin-bottom:10px;
 }
 
 /* ===== FIREWORK ===== */
 .firework{
   position:fixed;
-  bottom:0;
-  width:6px;
-  height:6px;
-  background:gold;
+  width:6px;height:6px;
   border-radius:50%;
-  animation:fireworkUp 1s linear forwards;
+  background:#fff;
   pointer-events:none;
+  animation:boom 1s ease-out forwards;
 }
 
-@keyframes fireworkUp{
-  to{
-    transform:translateY(-100vh) scale(2);
-    opacity:0;
-  }
+@keyframes boom{
+  0%{transform:scale(1);opacity:1}
+  100%{transform:scale(18);opacity:0}
 }
-</style>
-</head>
 
-<body>
+/* ===== HERO ===== */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
 
-<!-- ===== MENU ===== -->
-<div class="nav">
-  <div><b>🇻🇳 LỊCH SỬ VIỆT NAM</b></div>
-  <div>
-    <a href="#lichsu">Lịch sử</a>
-    <a href="#ynghia">Ý nghĩa</a>
+.hero h1{
+  font-size:64px;
+  font-weight:900;
+  text-shadow:0 0 30px rgba(0,0,0,.6);
+}
+
+@media(max-width:768px){
+  .hero h1{font-size:42px}
+  .star{font-size:64px}
+}
+</style></head><body><div class="sky"></div>
+<div class="clouds"></div>
+<div class="overlay"></div><div class="star">★</div><nav>
+  <div class="logo">🇻🇳 LỊCH SỬ VIỆT NAM</div>
+  <div class="menu">
+    <a href="#home">Trang chủ</a>
+    <a href="#timeline">Các trận chiến</a>
   </div>
-</div>
+</nav><section class="hero" id="home">
+  <h1>Khát Vọng Tuổi Trẻ<br>Vì Tổ Quốc</h1>
+</section><section class="section" id="timeline">
+  <div class="title">Những Trận Chiến Lịch Sử</div>  <div class="timeline-item">
+    <h3>938 — Chiến thắng Bạch Đằng</h3>
+    <p>Ngô Quyền lãnh đạo quân dân ta đánh bại quân Nam Hán trên sông Bạch Đằng. Ông cho đóng cọc gỗ nhọn dưới lòng sông, nhử thuyền địch tiến sâu khi thủy triều lên. Khi nước rút, thuyền địch mắc cạn và bị tiêu diệt hoàn toàn. Chiến thắng này chấm dứt hơn 1000 năm Bắc thuộc và mở ra thời kỳ độc lập lâu dài của dân tộc.</p>
+  </div>  <div class="timeline-item">
+    <h3>1288 — Đại thắng Bạch Đằng</h3>
+    <p>Trần Hưng Đạo chỉ huy quân Đại Việt đánh tan quân Nguyên Mông lần thứ ba. Bằng chiến thuật thủy chiến và bãi cọc trên sông Bạch Đằng, quân ta tiêu diệt gần như toàn bộ thủy binh địch. Chiến thắng khẳng định sức mạnh quân sự và ý chí độc lập của Đại Việt trước đế chế mạnh nhất thế giới thời bấy giờ.</p>
+  </div>  <div class="timeline-item">
+    <h3>1789 — Chiến thắng Ngọc Hồi – Đống Đa</h3>
+    <p>Hoàng đế Quang Trung chỉ huy cuộc hành quân thần tốc ra Bắc Hà trong dịp Tết Kỷ Dậu. Quân Tây Sơn tấn công mãnh liệt vào các đồn Ngọc Hồi và Đống Đa, tiêu diệt hàng vạn quân Thanh chỉ trong vài ngày. Đây là một trong những chiến công hiển hách nhất trong lịch sử chống ngoại xâm của Việt Nam.</p>
+  </div></section><button class="music-btn" onclick="toggleMusic()">🔊 Bật/Tắt nhạc</button>
 
-<!-- ===== CLOUDS ===== -->
-<img class="cloud" src="https://i.imgur.com/U7i6B8P.png" style="top:60px; animation-duration:60s;">
-<img class="cloud" src="https://i.imgur.com/U7i6B8P.png" style="top:140px; animation-duration:80s;">
-<img class="cloud" src="https://i.imgur.com/U7i6B8P.png" style="top:220px; animation-duration:100s;">
+<audio id="music" loop>
+  <source src="https://files.catbox.moe/8k9q2h.mp3" type="audio/mpeg">
+</audio><script>
+/* ===== AUTO MUSIC (mobile friendly) ===== */
+const music=document.getElementById('music');
+let started=false;
 
-<!-- ===== FLAG ===== -->
-<div class="flag-wrap">
-  <div class="flag"></div>
-</div>
+function tryPlay(){
+  if(started) return;
+  music.play().catch(()=>{});
+  started=true;
+}
 
-<!-- ===== STAR ===== -->
-<div class="star-center">★</div>
-
-<!-- ===== CONTENT ===== -->
-<div id="lichsu" class="section">
-  <h2>⚔️ Thời Kỳ Kháng Chiến Chống Pháp (1858 – 1954)</h2>
-
-  <div class="timeline-item">
-    <h3>1️⃣ Thực dân Pháp xâm lược (1858)</h3>
-    <p>Ngày 1/9/1858, liên quân Pháp – Tây Ban Nha nổ súng tấn công Đà Nẵng...</p>
-  </div>
-
-  <div class="timeline-item">
-    <h3>4️⃣ Cách mạng tháng Tám 1945</h3>
-    <p>Ngày 2/9/1945, tại Quảng trường Ba Đình, Chủ tịch Hồ Chí Minh đọc Tuyên ngôn Độc lập...</p>
-  </div>
-
-  <div class="timeline-item">
-    <h3>6️⃣ Chiến thắng Điện Biên Phủ (1954)</h3>
-    <p>Ngày 7/5/1954, quân ta tiêu diệt tập đoàn cứ điểm Điện Biên Phủ...</p>
-  </div>
-</div>
-
-<div id="ynghia" class="section">
-  <h2>🇻🇳 Ý Nghĩa Lịch Sử</h2>
-  <div class="timeline-item">
-    <p>Khẳng định tinh thần yêu nước bất khuất của dân tộc Việt Nam...</p>
-  </div>
-</div>
-
-<!-- ===== MUSIC ===== -->
-<audio id="bgMusic" loop autoplay>
-  <source src="https://files.catbox.moe/9w4m6y.mp3" type="audio/mpeg">
-</audio>
-
-<button class="music-btn" onclick="toggleMusic()">🔊 Nhạc</button>
-
-<script>
-/* ===== MUSIC ===== */
-let music=document.getElementById("bgMusic");
-let playing=true;
+document.addEventListener('click',tryPlay,{once:true});
+window.addEventListener('load',()=>{
+  music.volume=0.6;
+  music.play().catch(()=>{});
+});
 
 function toggleMusic(){
-  if(playing){
-    music.pause();
-    playing=false;
-  }else{
-    music.play();
-    playing=true;
-  }
+  if(music.paused) music.play();
+  else music.pause();
 }
 
-/* ===== TIMELINE ===== */
-let items=document.querySelectorAll(".timeline-item");
+/* ===== SMOOTH TIMELINE ===== */
+const items=document.querySelectorAll('.timeline-item');
 
 function showItems(){
-  let trigger=window.innerHeight*0.9;
+  const trigger=window.innerHeight*0.85;
   items.forEach(item=>{
-    let top=item.getBoundingClientRect().top;
-    if(top<trigger){
-      item.classList.add("show");
-    }
+    const top=item.getBoundingClientRect().top;
+    if(top<trigger) item.classList.add('show');
   });
 }
 
-window.addEventListener("scroll",showItems);
+window.addEventListener('scroll',showItems);
 showItems();
 
-/* ===== FIREWORK CONTINUOUS ===== */
+/* ===== CRAZY FIREWORK ===== */
 setInterval(()=>{
-  let fire=document.createElement("div");
-  fire.className="firework";
-  fire.style.left=Math.random()*window.innerWidth+"px";
-  document.body.appendChild(fire);
-  setTimeout(()=>fire.remove(),1000);
-},250);
-</script>
-
-</body>
-</html>
+  for(let i=0;i<3;i++){
+    const f=document.createElement('div');
+    f.className='firework';
+    f.style.left=Math.random()*window.innerWidth+'px';
+    f.style.top=Math.random()*window.innerHeight+'px';
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+  }
+},150);
+</script></body>
+  </html>
