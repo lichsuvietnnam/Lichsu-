@@ -3,111 +3,248 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lịch Sử Việt Nam - Kháng Chiến</title>
+<title>Lịch Sử Việt Nam</title>
 
 <style>
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #111;
-  color: white;
-  line-height: 1.6;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    overflow-x: hidden;
+    background: black;
 }
 
+/* ===== video nền ===== */
+#bgVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -2;
+    object-fit: cover;
+    filter: brightness(0.35);
+}
+
+/* lớp phủ tối */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, transparent, black);
+    z-index: -1;
+}
+
+/* chữ chạy */
+.marquee {
+    background: #FFD700;
+    color: black;
+    padding: 10px;
+    font-weight: bold;
+}
+
+/* header */
 header {
-  background: linear-gradient(90deg, #8B0000, #ff0000);
-  padding: 30px;
-  text-align: center;
+    text-align: center;
+    padding: 80px 20px;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 28px;
+h1 {
+    font-size: 52px;
+    color: #FFD700;
+    animation: glow 2s infinite alternate;
 }
 
-marquee {
-  font-size: 18px;
-  color: yellow;
-  margin-top: 10px;
+@keyframes glow {
+    from { text-shadow: 0 0 10px #FFD700; }
+    to { text-shadow: 0 0 40px #FFD700; }
 }
 
-section {
-  padding: 20px;
-  margin: 20px;
-  background: #1e1e1e;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(255,0,0,0.4);
+/* timeline */
+.timeline {
+    margin: 60px;
+    padding-left: 30px;
+    border-left: 3px solid #FFD700;
 }
 
-h2 {
-  color: #ffcc00;
-  border-left: 5px solid red;
-  padding-left: 10px;
+.timeline-item {
+    margin: 40px 0;
+    opacity: 0;
+    transform: translateY(80px);
+    transition: all 1s ease;
+    background: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 12px;
 }
 
-img {
-  width: 100%;
-  border-radius: 10px;
-  margin-top: 10px;
+.timeline-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* nút nhạc */
+.music-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #FFD700;
+    color: black;
+    border: none;
+    padding: 16px 20px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 999;
+}
+
+/* canvas pháo hoa */
+#fireworks {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
 }
 
 footer {
-  text-align: center;
-  padding: 20px;
-  background: #8B0000;
+    text-align: center;
+    padding: 30px;
+    background: rgba(0,0,0,0.7);
 }
 </style>
 </head>
 
 <body>
 
-<!-- Nhạc nền -->
-<audio autoplay loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+<!-- 🎬 VIDEO NỀN -->
+<video autoplay muted loop id="bgVideo">
+<source src="https://cdn.coverr.co/videos/coverr-soldiers-in-war-5174/1080p.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<!-- 🎆 pháo hoa -->
+<canvas id="fireworks"></canvas>
+
+<!-- 🎵 nhạc -->
+<audio id="bgMusic" autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
 </audio>
 
+<button class="music-btn" onclick="toggleMusic()">🔊</button>
+
+<!-- chữ chạy -->
+<div class="marquee">
+<marquee>🇻🇳 Tự hào dân tộc Việt Nam – Bất khuất – Kiên cường – Anh hùng 🇻🇳</marquee>
+</div>
+
 <header>
-  <h1>LỊCH SỬ KHÁNG CHIẾN VIỆT NAM</h1>
-  <marquee>🔥 Tự hào dân tộc - Quyết chiến quyết thắng - Thống nhất đất nước 🔥</marquee>
+<h1>🇻🇳 LỊCH SỬ VIỆT NAM</h1>
+<p>Hành trình đấu tranh giành độc lập của dân tộc</p>
 </header>
 
-<section>
-  <h2>Kháng chiến chống Pháp (1945 - 1954)</h2>
+<section class="timeline">
 
-  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Dien_Bien_Phu.jpg">
+<div class="timeline-item">
+<h3>1858 – Pháp xâm lược</h3>
+<p>Liên quân Pháp – Tây Ban Nha nổ súng tại Đà Nẵng, mở đầu thời kỳ đô hộ.</p>
+</div>
 
-  <p><b>1945:</b> Cách mạng tháng Tám thành công, nước Việt Nam Dân chủ Cộng hòa ra đời.</p>
-  <p><b>19/12/1946:</b> Toàn quốc kháng chiến bùng nổ.</p>
-  <p><b>1947:</b> Chiến thắng Việt Bắc.</p>
-  <p><b>1950:</b> Chiến dịch Biên giới.</p>
-  <p><b>1953-1954:</b> Chiến dịch Điện Biên Phủ.</p>
-  <p><b>7/5/1954:</b> Chiến thắng Điện Biên Phủ vang dội địa cầu.</p>
+<div class="timeline-item">
+<h3>1945 – Tuyên ngôn Độc lập</h3>
+<p>Ngày 2/9/1945, nước Việt Nam Dân chủ Cộng hòa ra đời.</p>
+</div>
 
-</section>
+<div class="timeline-item">
+<h3>1954 – Điện Biên Phủ</h3>
+<p>Chiến thắng lừng lẫy năm châu, chấn động địa cầu.</p>
+</div>
 
-<section>
-  <h2>Kháng chiến chống Mỹ (1954 - 1975)</h2>
+<div class="timeline-item">
+<h3>1975 – Giải phóng miền Nam</h3>
+<p>Ngày 30/4/1975, đất nước hoàn toàn thống nhất.</p>
+</div>
 
-  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Fall_of_Saigon.jpg">
-
-  <p><b>1954:</b> Đất nước tạm thời chia cắt hai miền.</p>
-  <p><b>1960:</b> Thành lập Mặt trận Dân tộc Giải phóng miền Nam.</p>
-  <p><b>1968:</b> Tổng tiến công và nổi dậy Tết Mậu Thân.</p>
-  <p><b>1972:</b> Chiến thắng Điện Biên Phủ trên không.</p>
-  <p><b>30/4/1975:</b> Chiến dịch Hồ Chí Minh toàn thắng, đất nước thống nhất.</p>
-
-</section>
-
-<section>
-  <h2>Ý Nghĩa Lịch Sử</h2>
-  <p>Hai cuộc kháng chiến đã bảo vệ độc lập dân tộc, thống nhất đất nước.</p>
-  <p>Thể hiện tinh thần yêu nước và ý chí kiên cường của nhân dân Việt Nam.</p>
-  <p>Góp phần cổ vũ phong trào giải phóng dân tộc trên thế giới.</p>
 </section>
 
 <footer>
-  🇻🇳 30/4/1975 - Đại thắng mùa xuân 🇻🇳
+<p>🇻🇳 Website Lịch Sử Việt Nam</p>
 </footer>
+
+<script>
+/* ===== nút nhạc ===== */
+let music = document.getElementById("bgMusic");
+let playing = true;
+
+function toggleMusic() {
+    if (playing) {
+        music.pause();
+        playing = false;
+    } else {
+        music.play();
+        playing = true;
+    }
+}
+
+/* ===== timeline mượt ===== */
+let items = document.querySelectorAll(".timeline-item");
+
+function showTimeline() {
+    let trigger = window.innerHeight * 0.85;
+    items.forEach(item => {
+        let top = item.getBoundingClientRect().top;
+        if (top < trigger) item.classList.add("show");
+    });
+}
+window.addEventListener("scroll", showTimeline);
+showTimeline();
+
+/* ===== pháo hoa liên tục ===== */
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+function spawnFirework(x, y) {
+    for (let i = 0; i < 40; i++) {
+        particles.push({
+            x: x,
+            y: y,
+            dx: (Math.random() - 0.5) * 6,
+            dy: (Math.random() - 0.5) * 6,
+            life: 80
+        });
+    }
+}
+
+setInterval(() => {
+    spawnFirework(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height * 0.6
+    );
+}, 800);
+
+function animate() {
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(p => {
+        p.x += p.dx;
+        p.y += p.dy;
+        p.life--;
+
+        ctx.fillStyle = "#FFD700";
+        ctx.fillRect(p.x, p.y, 3, 3);
+    });
+
+    particles = particles.filter(p => p.life > 0);
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
 
 </body>
 </html>
