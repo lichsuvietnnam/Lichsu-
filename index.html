@@ -1,61 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-    <title>Lịch sử Việt Nam</title>
-    <style>
-        body {
-            margin: 0;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
-            color: white;
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lịch sử Việt Nam</title>
 
-        header {
-            background: rgba(0,0,0,0.3);
-            padding: 20px;
-            font-size: 24px;
-        }
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(to right,#1e3c72,#2a5298);
+    color:white;
+    text-align:center;
+}
 
-        .content {
-            padding: 100px 20px;
-        }
+header{
+    background:rgba(0,0,0,0.4);
+    padding:15px;
+    font-size:20px;
+}
 
-        h1 {
-            font-size: 40px;
-        }
+.hero{
+    padding:100px 20px;
+}
 
-        p {
-            font-size: 20px;
-        }
+h1{
+    font-size:40px;
+}
 
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background-color: yellow;
-            color: black;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-        }
+p{
+    font-size:18px;
+}
 
-        .btn:hover {
-            background-color: orange;
-        }
-    </style>
+.nut{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:orange;
+    color:black;
+    text-decoration:none;
+    border-radius:25px;
+    font-weight:bold;
+}
+
+.nut:hover{
+    background:gold;
+}
+
+section{
+    padding:60px 20px;
+    background:white;
+    color:black;
+}
+
+section h2{
+    color:#1e3c72;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+</style>
+
 </head>
 <body>
 
 <header>
-    🇻🇳 LỊCH SỬ VIỆT NAM
+🇻🇳 LỊCH SỬ VIỆT NAM
 </header>
 
-<div class="content">
+<div class="hero">
     <h1>Chào mừng bạn!</h1>
     <p>Khám phá những câu chuyện hào hùng của dân tộc Việt Nam.</p>
-    <a href="#" class="btn">Khám phá ngay</a>
+    <a href="#lichsu" class="nut">Khám phá ngay</a>
 </div>
+
+<section id="lichsu">
+    <h2>Thời Hùng Vương</h2>
+    <p>Thời kỳ dựng nước đầu tiên của dân tộc Việt Nam, gắn liền với truyền thuyết Con Rồng Cháu Tiên và các vua Hùng.</p>
+
+    <h2>Thời phong kiến</h2>
+    <p>Gồm các triều đại như Lý, Trần, Lê, Nguyễn. Nhiều chiến thắng vang dội chống giặc ngoại xâm như chống quân Nguyên Mông.</p>
+
+    <h2>Thời Pháp thuộc</h2>
+    <p>Việt Nam bị thực dân Pháp đô hộ. Nhân dân đứng lên đấu tranh giành độc lập với nhiều phong trào yêu nước.</p>
+
+    <h2>Thời hiện đại</h2>
+    <p>Năm 1945, Chủ tịch Hồ Chí Minh tuyên bố độc lập. Việt Nam tiếp tục phát triển và hội nhập quốc tế.</p>
+</section>
 
 </body>
 </html>
