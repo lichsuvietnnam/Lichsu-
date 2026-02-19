@@ -1,273 +1,260 @@
-<!DOCTYPE html><html lang="vi">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lịch Sử Việt Nam - Điện Ảnh</title><!-- ===== Google Font ===== --><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;500;700;900&display=swap" rel="stylesheet"><style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Be Vietnam Pro',sans-serif;
-  color:#fff;
-  overflow-x:hidden;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lịch Sử Việt Nam</title>
+
+<style>
+html{
   scroll-behavior:smooth;
-  background:#000;
 }
 
-/* ===== Background sky ===== */
-.sky{
-  position:fixed;
-  inset:0;
-  background:linear-gradient(#3da0ff,#a7d8ff 60%,#ffffff);
-  z-index:-3;
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  color:white;
+  overflow-x:hidden;
+  background:linear-gradient(#4facfe,#00c6ff);
 }
 
-.clouds{
-  position:fixed;
-  inset:0;
-  background:url('https://i.imgur.com/9QZ7Q9K.png');
-  background-size:cover;
-  opacity:.35;
-  animation:cloudMove 120s linear infinite;
-  z-index:-2;
-}
-
-@keyframes cloudMove{
-  from{background-position:0 0}
-  to{background-position:2000px 0}
-}
-
-/* ===== Cinematic overlay ===== */
-.overlay{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at center,transparent 55%,rgba(0,0,0,.55)),
-    linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.35));
-  z-index:-1;
-}
-
-/* ===== NAVBAR ===== */
-nav{
+/* ===== MÂY BAY ===== */
+.cloud{
   position:fixed;
   top:0;
-  left:0;
+  left:-200px;
+  width:200px;
+  height:80px;
+  background:white;
+  border-radius:50px;
+  opacity:.7;
+  filter:blur(2px);
+  animation:cloudMove 60s linear infinite;
+  z-index:1;
+}
+
+.cloud:nth-child(2){ top:120px; animation-duration:80s;}
+.cloud:nth-child(3){ top:220px; animation-duration:100s;}
+
+@keyframes cloudMove{
+  to{ left:110%; }
+}
+
+/* ===== MENU ===== */
+.nav{
+  position:fixed;
+  top:0;
   width:100%;
-  padding:14px 30px;
+  background:rgba(0,0,0,.6);
   backdrop-filter:blur(10px);
-  background:rgba(0,0,0,.35);
   display:flex;
   justify-content:space-between;
   align-items:center;
+  padding:12px 20px;
   z-index:999;
 }
 
-.logo{
-  font-weight:900;
+.nav h1{
+  margin:0;
   font-size:22px;
-  letter-spacing:1px;
 }
 
-.menu{
-  display:flex;
-  gap:24px;
-}
-
-.menu a{
-  color:#fff;
+.nav a{
+  color:white;
   text-decoration:none;
-  font-weight:600;
-  position:relative;
-}
-
-.menu a::after{
-  content:"";
-  position:absolute;
-  left:0;bottom:-4px;
-  width:0;height:2px;
-  background:#ffd700;
-  transition:.3s;
-}
-
-.menu a:hover::after{width:100%}
-
-/* ===== MUSIC BUTTON ===== */
-.music-btn{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  background:linear-gradient(45deg,#ff0000,#ffcc00);
-  border:none;
-  color:#fff;
-  padding:14px 18px;
-  border-radius:999px;
-  font-weight:700;
-  cursor:pointer;
-  box-shadow:0 0 20px rgba(255,0,0,.6);
-  z-index:999;
-}
-
-/* ===== STAR ===== */
-.star{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-size:90px;
-  color:#ffd700;
-  text-shadow:
-    0 0 20px #ffd700,
-    0 0 40px #ffd700,
-    0 0 80px #ffea00;
-  animation:starPulse 2s ease-in-out infinite;
-  pointer-events:none;
-}
-
-@keyframes starPulse{
-  0%,100%{transform:translate(-50%,-50%) scale(1)}
-  50%{transform:translate(-50%,-50%) scale(1.25)}
-}
-
-/* ===== TIMELINE ===== */
-.section{
-  padding:120px 20px;
-  max-width:1100px;
-  margin:auto;
-}
-
-.title{
-  text-align:center;
-  font-size:42px;
-  font-weight:900;
-  margin-bottom:60px;
-  text-shadow:0 0 20px rgba(0,0,0,.6);
-}
-
-.timeline-item{
-  background:rgba(0,0,0,.45);
-  backdrop-filter:blur(8px);
-  padding:28px;
-  border-radius:18px;
-  margin-bottom:40px;
-  transform:translateY(80px);
-  opacity:0;
-  transition:.9s cubic-bezier(.2,.8,.2,1);
-  box-shadow:0 20px 40px rgba(0,0,0,.45);
-}
-
-.timeline-item.show{
-  transform:translateY(0);
-  opacity:1;
-}
-
-.timeline-item h3{
-  color:#ffd700;
-  margin-bottom:10px;
-}
-
-/* ===== FIREWORK ===== */
-.firework{
-  position:fixed;
-  width:6px;height:6px;
-  border-radius:50%;
-  background:#fff;
-  pointer-events:none;
-  animation:boom 1s ease-out forwards;
-}
-
-@keyframes boom{
-  0%{transform:scale(1);opacity:1}
-  100%{transform:scale(18);opacity:0}
+  margin-left:15px;
+  font-weight:bold;
 }
 
 /* ===== HERO ===== */
 .hero{
   height:100vh;
   display:flex;
-  align-items:center;
+  flex-direction:column;
   justify-content:center;
+  align-items:center;
   text-align:center;
+  position:relative;
+  z-index:2;
 }
 
-.hero h1{
-  font-size:64px;
-  font-weight:900;
-  text-shadow:0 0 30px rgba(0,0,0,.6);
+.star{
+  font-size:70px;
+  color:gold;
+  text-shadow:
+    0 0 20px gold,
+    0 0 40px gold,
+    0 0 80px gold;
+  animation:pulse 2s infinite;
 }
 
-@media(max-width:768px){
-  .hero h1{font-size:42px}
-  .star{font-size:64px}
+@keyframes pulse{
+  50%{ transform:scale(1.2); }
 }
-</style></head><body><div class="sky"></div>
-<div class="clouds"></div>
-<div class="overlay"></div><div class="star">★</div><nav>
-  <div class="logo">🇻🇳 LỊCH SỬ VIỆT NAM</div>
-  <div class="menu">
+
+/* ===== TIMELINE ===== */
+.section{
+  padding:60px 20px;
+  max-width:900px;
+  margin:auto;
+  position:relative;
+  z-index:2;
+}
+
+.timeline-item{
+  opacity:0;
+  transform:translateY(60px);
+  transition:.8s;
+  margin-bottom:40px;
+  background:rgba(0,0,0,.35);
+  padding:20px;
+  border-radius:12px;
+}
+
+.timeline-item.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ===== NÚT NHẠC ===== */
+.music-btn{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:linear-gradient(45deg,#ff0000,#ff9900);
+  border:none;
+  padding:14px 18px;
+  border-radius:30px;
+  color:white;
+  font-weight:bold;
+  z-index:999;
+  box-shadow:0 0 20px rgba(255,0,0,.6);
+}
+
+/* ===== PHÁO HOA ===== */
+.firework{
+  position:fixed;
+  bottom:0;
+  width:6px;
+  height:6px;
+  background:gold;
+  border-radius:50%;
+  animation:fireworkUp 1s linear forwards;
+  z-index:5;
+}
+
+@keyframes fireworkUp{
+  to{
+    transform:translateY(-100vh);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- mây -->
+<div class="cloud"></div>
+<div class="cloud"></div>
+<div class="cloud"></div>
+
+<!-- menu -->
+<div class="nav">
+  <h1>🇻🇳 LỊCH SỬ VIỆT NAM</h1>
+  <div>
     <a href="#home">Trang chủ</a>
     <a href="#timeline">Các trận chiến</a>
   </div>
-</nav><section class="hero" id="home">
-  <h1>Khát Vọng Tuổi Trẻ<br>Vì Tổ Quốc</h1>
-</section><section class="section" id="timeline">
-  <div class="title">Những Trận Chiến Lịch Sử</div>  <div class="timeline-item">
-    <h3>938 — Chiến thắng Bạch Đằng</h3>
-    <p>Ngô Quyền lãnh đạo quân dân ta đánh bại quân Nam Hán trên sông Bạch Đằng. Ông cho đóng cọc gỗ nhọn dưới lòng sông, nhử thuyền địch tiến sâu khi thủy triều lên. Khi nước rút, thuyền địch mắc cạn và bị tiêu diệt hoàn toàn. Chiến thắng này chấm dứt hơn 1000 năm Bắc thuộc và mở ra thời kỳ độc lập lâu dài của dân tộc.</p>
-  </div>  <div class="timeline-item">
-    <h3>1288 — Đại thắng Bạch Đằng</h3>
-    <p>Trần Hưng Đạo chỉ huy quân Đại Việt đánh tan quân Nguyên Mông lần thứ ba. Bằng chiến thuật thủy chiến và bãi cọc trên sông Bạch Đằng, quân ta tiêu diệt gần như toàn bộ thủy binh địch. Chiến thắng khẳng định sức mạnh quân sự và ý chí độc lập của Đại Việt trước đế chế mạnh nhất thế giới thời bấy giờ.</p>
-  </div>  <div class="timeline-item">
-    <h3>1789 — Chiến thắng Ngọc Hồi – Đống Đa</h3>
-    <p>Hoàng đế Quang Trung chỉ huy cuộc hành quân thần tốc ra Bắc Hà trong dịp Tết Kỷ Dậu. Quân Tây Sơn tấn công mãnh liệt vào các đồn Ngọc Hồi và Đống Đa, tiêu diệt hàng vạn quân Thanh chỉ trong vài ngày. Đây là một trong những chiến công hiển hách nhất trong lịch sử chống ngoại xâm của Việt Nam.</p>
-  </div></section><button class="music-btn" onclick="toggleMusic()">🔊 Bật/Tắt nhạc</button>
+</div>
 
-<audio id="music" loop>
-  <source src="https://files.catbox.moe/8k9q2h.mp3" type="audio/mpeg">
-</audio><script>
-/* ===== AUTO MUSIC (mobile friendly) ===== */
-const music=document.getElementById('music');
-let started=false;
+<!-- hero -->
+<section class="hero" id="home">
+  <div class="star">⭐</div>
+  <h1>Khát Vọng Tuổi Trẻ</h1>
+  <h2>Vì Tổ Quốc</h2>
+</section>
 
-function tryPlay(){
-  if(started) return;
-  music.play().catch(()=>{});
-  started=true;
-}
+<!-- timeline -->
+<section class="section" id="timeline">
 
-document.addEventListener('click',tryPlay,{once:true});
-window.addEventListener('load',()=>{
-  music.volume=0.6;
-  music.play().catch(()=>{});
-});
+<div class="timeline-item">
+<h3>1858 — Pháp nổ súng xâm lược</h3>
+<p>Ngày 1/9/1858, liên quân Pháp – Tây Ban Nha tấn công Đà Nẵng, mở đầu quá trình xâm lược Việt Nam.</p>
+</div>
 
-function toggleMusic(){
-  if(music.paused) music.play();
-  else music.pause();
-}
+<div class="timeline-item">
+<h3>1945 — Cách mạng Tháng Tám</h3>
+<p>Ngày 2/9/1945, Chủ tịch Hồ Chí Minh đọc Tuyên ngôn Độc lập tại Ba Đình.</p>
+</div>
 
-/* ===== SMOOTH TIMELINE ===== */
-const items=document.querySelectorAll('.timeline-item');
+<div class="timeline-item">
+<h3>1954 — Điện Biên Phủ</h3>
+<p>Ngày 7/5/1954, quân ta tiêu diệt tập đoàn cứ điểm Điện Biên Phủ.</p>
+</div>
+
+<div class="timeline-item">
+<h3>1975 — Giải phóng miền Nam</h3>
+<p>Ngày 30/4/1975, xe tăng tiến vào Dinh Độc Lập, đất nước thống nhất.</p>
+</div>
+
+</section>
+
+<!-- nhạc -->
+<audio id="bgMusic" loop>
+  <source src="khatvongtuoitre.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🔊 Bật/Tắt nhạc</button>
+
+<script>
+/* ===== TIMELINE ANIMATION ===== */
+let items=document.querySelectorAll(".timeline-item");
 
 function showItems(){
-  const trigger=window.innerHeight*0.85;
+  let trigger=window.innerHeight*0.9;
   items.forEach(item=>{
-    const top=item.getBoundingClientRect().top;
-    if(top<trigger) item.classList.add('show');
+    let top=item.getBoundingClientRect().top;
+    if(top<trigger){
+      item.classList.add("show");
+    }
   });
 }
 
-window.addEventListener('scroll',showItems);
+window.addEventListener("scroll",showItems);
 showItems();
 
-/* ===== CRAZY FIREWORK ===== */
+/* ===== FIREWORK CONTINUOUS ===== */
 setInterval(()=>{
-  for(let i=0;i<3;i++){
-    const f=document.createElement('div');
-    f.className='firework';
-    f.style.left=Math.random()*window.innerWidth+'px';
-    f.style.top=Math.random()*window.innerHeight+'px';
-    document.body.appendChild(f);
-    setTimeout(()=>f.remove(),1000);
+  let fire=document.createElement("div");
+  fire.className="firework";
+  fire.style.left=Math.random()*window.innerWidth+"px";
+  document.body.appendChild(fire);
+  setTimeout(()=>fire.remove(),1000);
+},300);
+
+/* ===== MUSIC CONTROL (MOBILE FIX) ===== */
+let music=document.getElementById("bgMusic");
+let started=false;
+
+function startMusic(){
+  if(!started){
+    music.play().catch(()=>{});
+    started=true;
   }
-},150);
-</script></body>
-  </html>
+}
+
+document.addEventListener("click",startMusic);
+document.addEventListener("touchstart",startMusic);
+
+function toggleMusic(){
+  if(music.paused){
+    music.play();
+  }else{
+    music.pause();
+  }
+}
+</script>
+
+</body>
+</html>
