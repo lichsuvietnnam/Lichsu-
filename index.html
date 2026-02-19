@@ -6,9 +6,7 @@
 <title>Lịch Sử Việt Nam</title>
 
 <style>
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth;}
 
 body{
   margin:0;
@@ -18,27 +16,25 @@ body{
   background:linear-gradient(#4facfe,#00c6ff);
 }
 
-/* ===== MÂY BAY ===== */
+/* ===== MÂY ===== */
 .cloud{
   position:fixed;
   top:0;
   left:-200px;
-  width:200px;
-  height:80px;
+  width:220px;
+  height:90px;
   background:white;
   border-radius:50px;
-  opacity:.7;
+  opacity:.75;
   filter:blur(2px);
-  animation:cloudMove 60s linear infinite;
+  animation:cloudMove linear infinite;
   z-index:1;
 }
+.cloud.c1{top:40px;animation-duration:60s;}
+.cloud.c2{top:160px;animation-duration:80s;}
+.cloud.c3{top:260px;animation-duration:100s;}
 
-.cloud:nth-child(2){ top:120px; animation-duration:80s;}
-.cloud:nth-child(3){ top:220px; animation-duration:100s;}
-
-@keyframes cloudMove{
-  to{ left:110%; }
-}
+@keyframes cloudMove{to{left:110%;}}
 
 /* ===== MENU ===== */
 .nav{
@@ -53,12 +49,6 @@ body{
   padding:12px 20px;
   z-index:999;
 }
-
-.nav h1{
-  margin:0;
-  font-size:22px;
-}
-
 .nav a{
   color:white;
   text-decoration:none;
@@ -77,40 +67,32 @@ body{
   position:relative;
   z-index:2;
 }
-
 .star{
-  font-size:70px;
+  font-size:80px;
   color:gold;
-  text-shadow:
-    0 0 20px gold,
-    0 0 40px gold,
-    0 0 80px gold;
+  text-shadow:0 0 25px gold,0 0 60px gold;
   animation:pulse 2s infinite;
 }
+@keyframes pulse{50%{transform:scale(1.25);}}
 
-@keyframes pulse{
-  50%{ transform:scale(1.2); }
-}
-
-/* ===== TIMELINE ===== */
+/* ===== SECTION ===== */
 .section{
-  padding:60px 20px;
-  max-width:900px;
+  padding:70px 20px;
+  max-width:950px;
   margin:auto;
   position:relative;
   z-index:2;
 }
-
 .timeline-item{
   opacity:0;
   transform:translateY(60px);
   transition:.8s;
-  margin-bottom:40px;
+  margin-bottom:30px;
   background:rgba(0,0,0,.35);
-  padding:20px;
-  border-radius:12px;
+  padding:22px;
+  border-radius:14px;
+  line-height:1.6;
 }
-
 .timeline-item.show{
   opacity:1;
   transform:translateY(0);
@@ -119,8 +101,8 @@ body{
 /* ===== NÚT NHẠC ===== */
 .music-btn{
   position:fixed;
-  right:20px;
-  bottom:20px;
+  right:18px;
+  bottom:18px;
   background:linear-gradient(45deg,#ff0000,#ff9900);
   border:none;
   padding:14px 18px;
@@ -142,119 +124,120 @@ body{
   animation:fireworkUp 1s linear forwards;
   z-index:5;
 }
-
 @keyframes fireworkUp{
-  to{
-    transform:translateY(-100vh);
-    opacity:0;
-  }
+  to{transform:translateY(-100vh);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- mây -->
-<div class="cloud"></div>
-<div class="cloud"></div>
-<div class="cloud"></div>
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="cloud c3"></div>
 
-<!-- menu -->
 <div class="nav">
-  <h1>🇻🇳 LỊCH SỬ VIỆT NAM</h1>
+  <b>🇻🇳 LỊCH SỬ VIỆT NAM</b>
   <div>
     <a href="#home">Trang chủ</a>
-    <a href="#timeline">Các trận chiến</a>
+    <a href="#timeline">Nội dung</a>
   </div>
 </div>
 
-<!-- hero -->
 <section class="hero" id="home">
   <div class="star">⭐</div>
   <h1>Khát Vọng Tuổi Trẻ</h1>
-  <h2>Vì Tổ Quốc</h2>
+  <h2>Hào khí dân tộc Việt Nam</h2>
 </section>
 
-<!-- timeline -->
 <section class="section" id="timeline">
 
 <div class="timeline-item">
-<h3>1858 — Pháp nổ súng xâm lược</h3>
-<p>Ngày 1/9/1858, liên quân Pháp – Tây Ban Nha tấn công Đà Nẵng, mở đầu quá trình xâm lược Việt Nam.</p>
+<h2>I. Giai đoạn Pháp xâm lược Việt Nam (1858–1884)</h2>
+<p><b>1. Liên quân Pháp – Tây Ban Nha tấn công Đà Nẵng (1858–1860)</b><br>
+Bối cảnh: Pháp muốn mở rộng thuộc địa ở Đông Nam Á và lấy cớ bảo vệ giáo sĩ phương Tây.<br>
+Diễn biến: Ngày 1/9/1858 liên quân nổ súng vào Đà Nẵng. Quân ta do Nguyễn Tri Phương chỉ huy thực hiện chiến thuật vườn không nhà trống và bao vây lâu dài khiến Pháp sa lầy.<br>
+Kết quả: Pháp thất bại ở Đà Nẵng và phải chuyển hướng đánh Gia Định.<br>
+Ý nghĩa: Chứng minh nếu kháng chiến đúng cách có thể cầm chân Pháp.</p>
 </div>
 
 <div class="timeline-item">
-<h3>1945 — Cách mạng Tháng Tám</h3>
-<p>Ngày 2/9/1945, Chủ tịch Hồ Chí Minh đọc Tuyên ngôn Độc lập tại Ba Đình.</p>
+<p><b>2. Pháp đánh chiếm Gia Định (1859)</b><br>
+Tháng 2/1859 Pháp tấn công thành Gia Định. Triều đình chống yếu và thiếu quyết tâm.<br>
+Kết quả: Pháp chiếm được Gia Định, mở bàn đạp đánh Nam Kỳ.</p>
 </div>
 
 <div class="timeline-item">
-<h3>1954 — Điện Biên Phủ</h3>
-<p>Ngày 7/5/1954, quân ta tiêu diệt tập đoàn cứ điểm Điện Biên Phủ.</p>
+<p><b>3. Các hiệp ước nhượng đất (1862–1884)</b><br>
+Hiệp ước Nhâm Tuất (1862): Triều đình Huế nhường 3 tỉnh miền Đông Nam Kỳ và mở cửa buôn bán.<br>
+Năm 1867 Pháp chiếm trọn Nam Kỳ.<br>
+Hai lần Pháp đánh Bắc Kỳ (1873 và 1882) tuy gặp tổn thất nhưng triều đình vẫn đầu hàng.<br>
+Hiệp ước Hác-măng (1883) và Pa-tơ-nốt (1884) khiến Việt Nam trở thành thuộc địa nửa phong kiến.</p>
 </div>
 
 <div class="timeline-item">
-<h3>1975 — Giải phóng miền Nam</h3>
-<p>Ngày 30/4/1975, xe tăng tiến vào Dinh Độc Lập, đất nước thống nhất.</p>
+<h2>IV. Kháng chiến chống Pháp lần thứ hai (1945–1954)</h2>
+<p><b>Chiến dịch Điện Biên Phủ (1954)</b><br>
+Pháp xây dựng tập đoàn cứ điểm mạnh tại Điện Biên Phủ theo kế hoạch Nava.<br>
+Đợt 1 (13–17/3/1954): ta tiêu diệt Him Lam, Độc Lập.<br>
+Đợt 2 (30/3 – 26/4): đánh các đồi phía đông, siết chặt vòng vây.<br>
+Đợt 3 (1–7/5): tổng công kích, ngày 7/5/1954 bắt sống tướng De Castries.<br>
+Kết quả: Pháp thua hoàn toàn và phải ký Hiệp định Genève.</p>
 </div>
 
 </section>
 
-<!-- nhạc -->
-<audio id="bgMusic" loop>
+<audio id="bgMusic" loop preload="auto">
   <source src="khatvongtuoitre.mp3" type="audio/mpeg">
 </audio>
 
 <button class="music-btn" onclick="toggleMusic()">🔊 Bật/Tắt nhạc</button>
 
 <script>
-/* ===== TIMELINE ANIMATION ===== */
+/* timeline */
 let items=document.querySelectorAll(".timeline-item");
-
 function showItems(){
   let trigger=window.innerHeight*0.9;
-  items.forEach(item=>{
-    let top=item.getBoundingClientRect().top;
-    if(top<trigger){
-      item.classList.add("show");
+  items.forEach(i=>{
+    if(i.getBoundingClientRect().top<trigger){
+      i.classList.add("show");
     }
   });
 }
-
 window.addEventListener("scroll",showItems);
 showItems();
 
-/* ===== FIREWORK CONTINUOUS ===== */
+/* pháo hoa */
 setInterval(()=>{
-  let fire=document.createElement("div");
-  fire.className="firework";
-  fire.style.left=Math.random()*window.innerWidth+"px";
-  document.body.appendChild(fire);
-  setTimeout(()=>fire.remove(),1000);
+  let f=document.createElement("div");
+  f.className="firework";
+  f.style.left=Math.random()*window.innerWidth+"px";
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),1000);
 },300);
 
-/* ===== MUSIC CONTROL (MOBILE FIX) ===== */
+/* nhạc */
 let music=document.getElementById("bgMusic");
 let started=false;
-
 function startMusic(){
   if(!started){
+    music.volume=0.6;
     music.play().catch(()=>{});
     started=true;
   }
 }
-
-document.addEventListener("click",startMusic);
-document.addEventListener("touchstart",startMusic);
+document.addEventListener("click",startMusic,{once:true});
+document.addEventListener("touchstart",startMusic,{once:true});
 
 function toggleMusic(){
-  if(music.paused){
-    music.play();
-  }else{
-    music.pause();
-  }
+  if(music.paused){music.play();}
+  else{music.pause();}
 }
 </script>
 
+<!-- NHẠC NỀN -->
+<audio id="bgMusic" autoplay loop>
+  <source src="khatvongtuoitre.mp3" type="audio/mpeg">
+</audio>
 </body>
 </html>
